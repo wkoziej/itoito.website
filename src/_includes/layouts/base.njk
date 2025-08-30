@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - {{ site.name }}</title>
+    <title>{% if title %}{{ title }} - {{ site.name }}{% else %}{{ site.name }} - {{ site.description }}{% endif %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}. Kompleksowe usługi w Lublinie i okolicach: masaż leczniczy, muzyka i produkcja, programowanie i IT.{% endif %}">
+    <meta name="keywords" content="masaż leczniczy Lublin, produkcja muzyczna, programowanie, IT, usługi zdrowotne, relaks, terapia, {% if keywords %}{{ keywords }}{% endif %}">
+    <meta name="author" content="{{ site.author }}">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="pl">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:title" content="{% if title %}{{ title }} - {{ site.name }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ site.description }}. Kompleksowe usługi w Lublinie i okolicach.{% endif %}">
+    <meta property="og:image" content="{{ site.url }}/assets/images/og-image.jpg">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="{{ site.name }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="twitter:title" content="{% if title %}{{ title }} - {{ site.name }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="twitter:description" content="{% if description %}{{ description }}{% else %}{{ site.description }}. Kompleksowe usługi w Lublinie i okolicach.{% endif %}">
+    <meta property="twitter:image" content="{{ site.url }}/assets/images/og-image.jpg">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
@@ -28,6 +52,41 @@
       gtag('js', new Date());
 
       gtag('config', 'G-CWJS5W805H');
+    </script>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "{{ site.name }}",
+      "description": "{{ site.description }}. Kompleksowe usługi w Lublinie i okolicach: masaż leczniczy, muzyka i produkcja, programowanie i IT.",
+      "url": "{{ site.url }}",
+      "telephone": "{{ site.phone }}",
+      "email": "{{ site.email }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{ site.address }}",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "51.2465",
+        "longitude": "22.5684"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Lublin i okolice"
+      },
+      "serviceType": ["Masaż leczniczy", "Produkcja muzyczna", "Programowanie", "Usługi IT"],
+      "sameAs": [
+        "{{ site.social.masaz.facebook }}",
+        "{{ site.social.muzyka.facebook }}",
+        "{{ site.social.muzyka.youtube }}",
+        "{{ site.social.muzyka.soundcloud }}",
+        "{{ site.social.programowanie.linkedin }}"
+      ]
+    }
     </script>
     
     <style>

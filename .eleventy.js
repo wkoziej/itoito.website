@@ -5,6 +5,9 @@ module.exports = function(eleventyConfig) {
   // Copy CNAME file for GitHub Pages
   eleventyConfig.addPassthroughCopy("src/CNAME");
   
+  // Copy SEO files
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
+  
   // Dodanie filtra date
   eleventyConfig.addFilter("year", function() {
     return new Date().getFullYear();
